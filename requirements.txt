@@ -5,10 +5,10 @@ langchain==0.2.16
 langchain-community==0.2.16
 langchain-huggingface
 langchain-groq
-sentence-transformers==2.7.0
+sentence-transformers
 faiss-cpu
 youtube-transcript-api
 pytube
 scikit-learn
-torch==2.2.2
-transformers==4.41.2
+torch
+transformers
