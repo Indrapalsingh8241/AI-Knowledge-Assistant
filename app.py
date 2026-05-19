@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import os
 
+from flask_cors import CORS
 from youtube_transcript_api import YouTubeTranscriptApi
 
 from langchain_community.vectorstores import FAISS
@@ -11,14 +12,20 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from langchain_groq import ChatGroq
 
+
+# -----------------------------------
+# Flask App
+# -----------------------------------
+
 app = Flask(__name__)
 
+CORS(app)
 # -----------------------------------
 # Load Embeddings
 # -----------------------------------
 
 embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+    model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 )
 
 # -----------------------------------
@@ -40,13 +47,10 @@ except:
 # -----------------------------------
 # Load Groq LLM
 # -----------------------------------
-
 import os
-
 llm = ChatGroq(
 
     groq_api_key=os.getenv("GROQ_API_KEY"),
-
     model_name="llama-3.1-8b-instant",
 
     temperature=0.1
@@ -79,12 +83,15 @@ Summary:
 defination give only when there is it some definition in the context otherwise leave it blank
 
 Rules:
-- Keep formatting clean
-- Use bullet points
-- Do not repeat information
+- Translate the final answer into English before responding
+- Never answer in Hindi
+- Even if context is Hindi, output must be English only
+- Use simple professional language
 - Keep answers concise but informative
-- If answer is not found in context say:
-  "I don't know from the provided context."
+- Use bullet points only when useful
+- Avoid unnecessary headings
+- Do not repeat information
+- Format answers cleanly
 
 Context:
 {context}
@@ -124,25 +131,25 @@ def create_vector_db_from_youtube(video_url):
 
         print("Video ID:", video_id)
 
-        # Fetch transcript
-
         ytt_api = YouTubeTranscriptApi()
 
-        transcript = ytt_api.fetch(video_id)
-
-        # Convert transcript to text
+        fetched_transcript = ytt_api.fetch(
+         video_id,
+          languages=['hi', 'en']
+)
 
         full_text = " ".join(
-        [item.text for item in transcript]
-       )
+         [snippet.text for snippet in fetched_transcript]
+          ) 
+     
 
         print("Transcript fetched successfully")
 
         # Split text
 
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=200
+            chunk_size=800,
+            chunk_overlap=50
         )
 
         chunks = splitter.split_text(full_text)
@@ -235,7 +242,7 @@ def predict():
         llm=llm,
 
         retriever=db.as_retriever(
-            search_kwargs={"k": 4}
+            search_kwargs={"k": 3}
         ),
 
         chain_type_kwargs={
@@ -258,13 +265,10 @@ def predict():
 # Run App
 # -----------------------------------
 
-import os
-
-if __name__ == "__main__":
-
-    port = int(os.environ.get("PORT", 10000))
+if __name__ == '__main__':
 
     app.run(
-        host="0.0.0.0",
-        port=port
+        host='0.0.0.0',
+        port=5001,
+        debug=True
     )

@@ -226,11 +226,7 @@ Pull requests are welcome.
 
 If you'd like to improve the project, feel free to fork the repository and submit a PR.
 
----
 
-# 📄 License
-
-MIT License
 
 ---
 
