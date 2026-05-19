@@ -1,77 +1,76 @@
-# 🎥 YouTube AI RAG Chatbot
+# ✨ YouTube AI RAG Chatbot
 
-An AI-powered chatbot that lets you chat with any YouTube video using Retrieval-Augmented Generation (RAG).
+An AI-powered YouTube chatbot that allows users to chat with any YouTube video using Retrieval-Augmented Generation (RAG).
 
-Built with Flask, LangChain, FAISS, Groq LLM, and YouTube Transcript API.
-
----
-
-# 🚀 Live Demo
-
-👉 Add your deployed Render link here
-
-Example:
-
-https://your-app-name.onrender.com
+Built with Flask, LangChain, FAISS, Groq LLM, HuggingFace Embeddings, and YouTube Transcript API.
 
 ---
 
-# ✨ Features
+# 🚀 Features
 
 ✅ Chat with any YouTube video  
 ✅ Automatic transcript extraction  
-✅ AI-generated answers using Groq Llama 3.1  
-✅ Semantic search with FAISS  
-✅ Clean chatbot UI  
+✅ AI-powered answers using Groq Llama 3  
+✅ Semantic search using FAISS  
 ✅ Retrieval-Augmented Generation (RAG)  
-✅ Fast responses  
+✅ Chrome Extension support  
+✅ Auto-detect current YouTube tab  
+✅ Modern glassmorphism UI  
+✅ Fast response generation  
+✅ YouTube Shorts support  
 ✅ Render deployment ready  
-✅ Chrome extension ready  
 
 ---
 
 # 🧠 How It Works
 
-1. Paste a YouTube video URL
+1. Open any YouTube video
 2. Transcript is fetched automatically
 3. Transcript is split into chunks
-4. Embeddings are created
-5. FAISS vector database is generated
+4. Embeddings are generated
+5. FAISS vector database is created
 6. User asks questions
-7. Relevant context is retrieved
-8. Groq LLM generates final answer
+7. Relevant chunks are retrieved
+8. Groq LLM generates final response
 
 ---
 
 # 🛠️ Tech Stack
 
-- Python
+## Frontend
+- HTML
+- CSS
+- JavaScript
+- Chrome Extension API
+
+## Backend
 - Flask
 - LangChain
 - FAISS
-- Groq API
 - HuggingFace Embeddings
+- Groq API
 - YouTube Transcript API
-- HTML/CSS/JavaScript
 
 ---
 
 # 📂 Project Structure
 
 ```text
-youtube-rag-chatbot/
+youtube-chatbot/
 │
 ├── app.py
 ├── requirements.txt
+├── manifest.json
+├── popup.html
+├── popup.js
+├── style.css
+├── icon.png
+├── README.md
+├── .gitignore
 │
 ├── faiss_index/
 │   ├── index.faiss
 │   └── index.pkl
-│
-├── templates/
-│   └── index.html
-│
-└── README.md
 ```
 
 ---
@@ -81,9 +80,9 @@ youtube-rag-chatbot/
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/your-username/youtube-rag-chatbot.git
+git clone https://github.com/Indrapalsingh8241/youtube-chatbot.git
 
-cd youtube-rag-chatbot
+cd youtube-chatbot
 ```
 
 ---
@@ -125,20 +124,22 @@ gunicorn
 langchain
 langchain-community
 langchain-huggingface
+langchain-groq
 sentence-transformers
 faiss-cpu
-langchain-groq
 youtube-transcript-api
 pytube
 ```
 
 ---
 
-# 🔑 Setup Groq API Key
+# 🔑 Setup Environment Variables
 
-Get API key from:
+Create `.env`
 
-https://console.groq.com/keys
+```env
+GROQ_API_KEY=your_groq_api_key
+```
 
 ---
 
@@ -150,7 +151,7 @@ export GROQ_API_KEY="your_groq_api_key"
 
 ---
 
-## Windows
+## Windows CMD
 
 ```bash
 set GROQ_API_KEY=your_groq_api_key
@@ -158,34 +159,63 @@ set GROQ_API_KEY=your_groq_api_key
 
 ---
 
-# ▶️ Run Project
+## Windows PowerShell
+
+```powershell
+$env:GROQ_API_KEY="your_groq_api_key"
+```
+
+---
+
+# ▶️ Run Backend
 
 ```bash
 python app.py
 ```
 
-Open:
+Backend runs on:
 
 ```text
-http://localhost:5001
+http://127.0.0.1:5001
 ```
 
 ---
 
-# 🎬 Example YouTube Video
+# 🧩 Load Chrome Extension
+
+1. Open Chrome
+2. Go to:
 
 ```text
-https://www.youtube.com/watch?v=aircAruvnKk
+chrome://extensions/
 ```
+
+3. Enable:
+- Developer Mode
+
+4. Click:
+- Load Unpacked
+
+5. Select project folder
 
 ---
 
-# 💡 Example Questions
+# 💡 Usage
 
-- What is a transformer?
-- Explain neural networks
-- Summarize the video
-- What are the key concepts discussed?
+1. Open any YouTube video
+2. Click the Chrome extension
+3. Video loads automatically
+4. Ask questions about the video
+
+---
+
+# 🎬 Example Questions
+
+- Summarize this video
+- What are the key points?
+- Explain this concept simply
+- What does the speaker mean?
+- Give notes from this video
 
 ---
 
@@ -209,14 +239,24 @@ gunicorn app:app
 
 # 🌐 Future Improvements
 
+- Streaming AI responses
 - Timestamp-based answers
-- Chrome Extension
-- PDF export
-- Video summarization
-- Playlist chatbot
 - Voice interaction
+- Chat history
 - Multi-video memory
-- Dark mode
+- PDF export
+- Playlist chatbot
+- Mobile app support
+
+---
+
+# 🔒 Security
+
+Never hardcode API keys.
+
+Use:
+- `.env`
+- `.gitignore`
 
 ---
 
@@ -224,9 +264,7 @@ gunicorn app:app
 
 Pull requests are welcome.
 
-If you'd like to improve the project, feel free to fork the repository and submit a PR.
-
-
+Feel free to fork the repository and improve the project.
 
 ---
 
@@ -235,3 +273,6 @@ If you'd like to improve the project, feel free to fork the repository and submi
 Indrapal Singh
 
 Made with ❤️ using Flask + LangChain + Groq
+
+GitHub:
+https://github.com/Indrapalsingh8241
