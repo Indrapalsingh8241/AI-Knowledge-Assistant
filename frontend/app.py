@@ -1,8 +1,7 @@
 import streamlit as st
 import requests
 
-BACKEND_URL = "http://127.0.0.1:8000"
-
+BACKEND_URL = "https://ai-knowledge-assistant-5xtx.onrender.com"
 st.set_page_config(
     page_title="AI Knowledge Assistant",
     page_icon="🤖",
