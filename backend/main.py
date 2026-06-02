@@ -1,3 +1,7 @@
+import os
+
+print("===== APP STARTING =====")
+print("GROQ_API_KEY exists:", bool(os.getenv("GROQ_API_KEY")))
 import sys
 import ssl
 
