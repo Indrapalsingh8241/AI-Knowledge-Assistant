@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 from langchain_groq import ChatGroq
-from langchain.chains import RetrievalQA
+
 from langchain_core.prompts import PromptTemplate
 
 from backend.services.vector_store_services import get_db
