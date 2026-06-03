@@ -5,7 +5,7 @@ An AI-powered RAG application that allows users to chat with YouTube videos, PDF
 
 Built with FastAPI, Streamlit, LangChain, FAISS, Groq LLM, HuggingFace Embeddings, and Retrieval-Augmented Generation (RAG).
 🔗 Live Demo:
-https://lnkd.in/d3yyPF6v
+[https://lnkd.in/d3yyPF6v](https://ai-knowledge-assistant-emrvvzjeju4trs7abd7q6w.streamlit.app/)
 
 ---
 
